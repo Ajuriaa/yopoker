@@ -130,3 +130,18 @@ body {
 html { touch-action: manipulation; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 body { overflow-x: hidden; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
 input, textarea { -webkit-user-select: text; user-select: text; font-size: max(16px, 1em); }
+
+/* Tabla de manos */
+.ranks-btn { width: auto; padding: 0 12px; font-size: 15px; white-space: nowrap; }
+.ranks-card { max-height: 88dvh; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.ranks-hint { margin: 0 0 10px; font-size: 14px; color: rgba(255, 255, 255, 0.75); line-height: 1.35; }
+.ranks-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.ranks-list li { display: grid; grid-template-columns: 26px 1fr; gap: 4px 10px; align-items: center; padding: 10px; border-radius: 14px; background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.1); }
+.ranks-list li.mine { border-color: var(--gold); background: rgba(255, 197, 61, 0.15); box-shadow: 0 0 0 1px var(--gold); }
+.ranks-list .rk { grid-row: 1 / 3; font-family: var(--display); font-size: 22px; color: var(--gold); text-align: center; }
+.ranks-list .rn { font-weight: 800; font-size: 16px; }
+.ranks-list .rn small { font-weight: 600; color: rgba(255, 255, 255, 0.7); font-size: 13px; margin-left: 4px; }
+.ranks-list .rd { font-size: 13px; color: rgba(255, 255, 255, 0.75); }
+.ranks-list .rc { grid-column: 2; display: flex; gap: 4px; margin-top: 4px; }
+.ranks-list .rc .card { --cw: 34px; }
+.ranks-list .tag-mine { display: inline-block; margin-left: 6px; padding: 1px 7px; border-radius: 999px; background: var(--gold); color: #2a1600; font-size: 11px; font-weight: 800; vertical-align: middle; }

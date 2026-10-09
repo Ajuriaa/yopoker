@@ -24,6 +24,7 @@
     <header class="top">
       <span id="dot" class="dot"></span>
       <div class="me"><div id="me-name" class="me-name"></div><div id="me-stack" class="me-stack"></div></div>
+      <button id="ranks-btn" class="icon-btn ranks-btn" aria-label="Ver manos de poker">📖 Manos</button>
       <button id="menu-btn" class="icon-btn" aria-label="Opciones">⋯</button>
     </header>
 
@@ -59,6 +60,15 @@
         <button id="raise-cancel" class="btn ghost">Cancelar</button>
         <button id="raise-ok" class="btn primary">Subir</button>
       </div>
+    </div>
+  </div>
+
+  <div id="ranks" class="sheet hidden">
+    <div class="sheet-card ranks-card">
+      <div class="sheet-title">Manos de poker, de la mejor a la peor</div>
+      <p class="ranks-hint">Se usan las 5 mejores cartas entre tus 2 y las 5 de la mesa. Si empatan en tipo de mano, gana la carta más alta.</p>
+      <ol id="ranks-list" class="ranks-list"></ol>
+      <button id="ranks-close" class="btn primary wide">Entendido</button>
     </div>
   </div>
 

@@ -119,6 +119,42 @@ function renderMenu() {
   $('#opt-sitout').textContent = mySeat()?.sitOut ? '✋ Volver a jugar' : '☕ Sentarme afuera (no me repartan)';
 }
 
+
+// ---------- Tabla de manos (para los que no saben jugar) ----------
+const HAND_RANKS = [
+  ['Escalera real', 'A, K, Q, J y 10 del mismo palo', 'As Ks Qs Js Ts', (n) => n.startsWith('Escalera real')],
+  ['Escalera de color', '5 seguidas del mismo palo', '9h 8h 7h 6h 5h', (n) => n.startsWith('Escalera de color')],
+  ['Póker', '4 cartas iguales', 'Kc Kd Kh Ks 3c', (n) => n.startsWith('Póker')],
+  ['Full', 'Un trío y un par', 'Qh Qd Qs 7c 7h', (n) => n.startsWith('Full')],
+  ['Color', '5 del mismo palo, en cualquier orden', 'Ad Jd 8d 6d 2d', (n) => n.startsWith('Color')],
+  ['Escalera', '5 seguidas de cualquier palo', 'Tc 9d 8s 7h 6c', (n) => n.startsWith('Escalera al')],
+  ['Trío', '3 cartas iguales', '8c 8d 8h Ks 4d', (n) => n.startsWith('Trío')],
+  ['Doble par', 'Dos pares distintos', 'Jh Jc 5d 5s As', (n) => n.startsWith('Doble par')],
+  ['Par', '2 cartas iguales', 'Th Td Ah 7s 2c', (n) => n.startsWith('Par de')],
+  ['Carta alta', 'Nada de lo anterior: cuenta la carta más alta', 'Ad Qc 9h 6s 3d', (n) => n.startsWith('Carta alta') || / y /.test(n)],
+];
+function renderRanks() {
+  // Solo se resalta si el jugador dejó sus cartas visibles (si no, el de al lado vería su mano).
+  const name = alwaysShow ? state?.me?.handName || '' : '';
+  // La primera coincidencia de la lista es la correcta ("Doble par: Jotas y Cincos" no es carta alta).
+  const mineIdx = name ? HAND_RANKS.findIndex((r) => r[3](name)) : -1;
+  $('#ranks-list').innerHTML = HAND_RANKS.map(([title, desc, ex], i) => {
+    const mine = i === mineIdx;
+    return `<li class="${mine ? 'mine' : ''}">
+      <span class="rk">${i + 1}</span>
+      <div class="rn">${title}${mine ? `<span class="tag-mine">Tu mano: ${esc(name)}</span>` : ''}</div>
+      <div class="rd">${desc}</div>
+      <div class="rc">${ex.split(' ').map((c) => cardHtml(c)).join('')}</div>
+    </li>`;
+  }).join('');
+}
+$('#ranks-btn').addEventListener('click', () => {
+  renderRanks();
+  $('#ranks').classList.remove('hidden');
+});
+$('#ranks-close').addEventListener('click', () => $('#ranks').classList.add('hidden'));
+$('#ranks').addEventListener('click', (e) => e.target.id === 'ranks' && $('#ranks').classList.add('hidden'));
+
 // ---------- Render ----------
 const mySeat = () => (state?.me ? state.seats[state.me.seat] : null);
 
