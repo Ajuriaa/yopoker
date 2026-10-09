@@ -1,0 +1,5 @@
+node_modules/
+.DS_Store
+data/state.json
+data/*.tmp
+data/.dealer-key

@@ -1,0 +1,50 @@
+/* Cartas: tamaño controlado por --cw (ancho) en cada pantalla. */
+.card {
+  --cw: 60px;
+  position: relative;
+  width: var(--cw);
+  height: calc(var(--cw) * 1.4);
+  border-radius: calc(var(--cw) * 0.1);
+  background: linear-gradient(160deg, #ffffff, #eef0f6);
+  box-shadow: 0 calc(var(--cw) * 0.05) calc(var(--cw) * 0.15) rgba(0, 0, 0, 0.45), inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+  font-family: var(--display);
+  user-select: none;
+  flex: none;
+}
+.card.red { color: #d3102d; }
+.card.black { color: #10131f; }
+.card-corner {
+  position: absolute;
+  top: calc(var(--cw) * 0.06);
+  left: calc(var(--cw) * 0.09);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 0.95;
+}
+.card-corner .r { font-size: calc(var(--cw) * 0.38); letter-spacing: -0.04em; }
+.card-corner .s { font-size: calc(var(--cw) * 0.3); font-family: var(--body); }
+.card-center {
+  position: absolute;
+  right: calc(var(--cw) * 0.08);
+  bottom: calc(var(--cw) * 0.04);
+  font-size: calc(var(--cw) * 0.62);
+  font-family: var(--body);
+  line-height: 1;
+}
+.card.back {
+  background: linear-gradient(135deg, #b3122e, #6d0718);
+  box-shadow: 0 calc(var(--cw) * 0.05) calc(var(--cw) * 0.15) rgba(0, 0, 0, 0.45), inset 0 0 0 calc(var(--cw) * 0.05) #fff;
+}
+.card-pattern {
+  position: absolute;
+  inset: calc(var(--cw) * 0.1);
+  border-radius: calc(var(--cw) * 0.05);
+  background: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.18) 0 calc(var(--cw) * 0.04), transparent calc(var(--cw) * 0.04) calc(var(--cw) * 0.1));
+}
+.card.dim { filter: brightness(0.45) saturate(0.4); }
+.card.win { box-shadow: 0 0 0 calc(var(--cw) * 0.05) var(--gold), 0 0 calc(var(--cw) * 0.4) rgba(255, 197, 61, 0.8); transform: translateY(calc(var(--cw) * -0.08)); }
+.card.deal-in { animation: dealIn 0.45s cubic-bezier(0.2, 1.2, 0.4, 1) both; }
+@keyframes dealIn { from { transform: translateY(-40%) rotate(-12deg) scale(0.6); opacity: 0; } }
+.card.flip-in { animation: flipIn 0.5s ease-out both; }
+@keyframes flipIn { from { transform: rotateY(90deg); } }

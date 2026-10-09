@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yopoker · TV</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E🃏%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/cards.css">
+  <link rel="stylesheet" href="/css/tv.css">
+</head>
+<body>
+  <div id="start" class="start">
+    <div class="logo">YOPOKER <span>🃏</span></div>
+    <button id="start-btn" class="start-btn">Click para empezar</button>
+    <p>Activa el sonido y la pantalla completa · tecla <b>F</b> para pantalla completa</p>
+  </div>
+
+  <div id="app" class="app">
+    <div class="topbar">
+      <div class="info"><span id="hand-no">Mano —</span><span class="dot">·</span><span id="blinds">Ciegas —</span></div>
+      <div class="join-mini" id="join-mini"><img src="/qr/play.svg" alt=""><span>Unite<br>a la mesa</span></div>
+    </div>
+
+    <div class="table">
+      <div class="rail"></div>
+      <div class="felt">
+        <div class="felt-logo">YOPOKER</div>
+        <div id="center" class="center">
+          <div id="board" class="board"></div>
+          <div id="pot" class="pot"></div>
+          <div id="center-msg" class="center-msg"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="seats"></div>
+    <div id="lobby" class="lobby hidden">
+      <img src="/qr/play.svg" alt="QR para unirse">
+      <div>
+        <div class="lobby-title">Escaneá para sentarte</div>
+        <div id="join-url" class="lobby-url"></div>
+        <div class="lobby-sub">Cada quien ve sus cartas en su cel 🤫</div>
+      </div>
+    </div>
+
+    <div id="winner" class="winner hidden"></div>
+    <div id="fx-drink" class="fx-drink"><div class="drink-emoji">🍺</div><div class="drink-title">¡TOMA!</div><div class="drink-who"></div><div class="drink-reason"></div></div>
+    <div id="fx-banner" class="fx-banner"></div>
+    <div id="offline" class="offline hidden">Reconectando con el servidor…</div>
+    <button id="sound-pill" class="sound-pill hidden">🔇 Click para activar sonido</button>
+  </div>
+  <script type="module" src="/js/tv.js"></script>
+</body>
+</html>

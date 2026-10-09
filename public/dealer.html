@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#070b24">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Yopoker · Dealer</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E🃏%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/cards.css">
+  <link rel="stylesheet" href="/css/dealer.css">
+</head>
+<body>
+  <header class="top">
+    <span id="dot" class="dot"></span>
+    <div class="title"><b>🎩 Dealer</b><span id="sub"></span></div>
+  </header>
+  <main id="panel" class="panel"></main>
+
+  <div id="sheet" class="sheet hidden">
+    <div class="sheet-card">
+      <div id="sheet-title" class="sheet-title"></div>
+      <div id="sheet-body"></div>
+      <div id="sheet-actions" class="sheet-actions">
+        <button id="sheet-cancel" class="btn ghost">Cancelar</button>
+        <button id="sheet-ok" class="btn primary">OK</button>
+      </div>
+    </div>
+  </div>
+  <div id="toast" class="toast"></div>
+  <div id="badkey" class="badkey hidden"><div>🔒</div><p>Este cel no tiene la llave de dealer.<br>Escaneá el QR de la terminal de la compu.</p></div>
+  <script type="module" src="/js/dealer.js"></script>
+</body>
+</html>

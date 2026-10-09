@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#08402a">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Yopoker · Jugador</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E🃏%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/cards.css">
+  <link rel="stylesheet" href="/css/play.css">
+</head>
+<body>
+  <section id="join" class="join hidden">
+    <div class="join-logo">🃏 YOPOKER</div>
+    <p id="join-msg">Poné tu nombre para sentarte a la mesa</p>
+    <input id="join-name" type="text" maxlength="14" placeholder="Tu nombre" autocomplete="off" autocapitalize="words">
+    <button id="join-btn" class="btn primary big">Sentarme</button>
+  </section>
+
+  <section id="game" class="game hidden">
+    <header class="top">
+      <span id="dot" class="dot"></span>
+      <div class="me"><div id="me-name" class="me-name"></div><div id="me-stack" class="me-stack"></div></div>
+      <button id="menu-btn" class="icon-btn" aria-label="Opciones">⋯</button>
+    </header>
+
+    <div id="status" class="status"></div>
+
+    <div class="table-mini">
+      <div id="board" class="board"></div>
+      <div class="pot-line"><span id="pot"></span><span id="tocall"></span></div>
+    </div>
+
+    <div id="hole" class="hole">
+      <div id="hole-cards" class="hole-cards"></div>
+      <div id="peek-hint" class="peek-hint">Mantené presionado para ver tus cartas</div>
+      <div id="hand-name" class="hand-name"></div>
+    </div>
+
+    <div id="result" class="result hidden"></div>
+
+    <footer id="actions" class="actions"></footer>
+  </section>
+
+  <div id="raise" class="sheet hidden">
+    <div class="sheet-card">
+      <div class="raise-head"><span id="raise-title">Subir a</span><b id="raise-amount">0</b></div>
+      <input id="raise-slider" type="range" min="0" max="100" step="1">
+      <div class="raise-step">
+        <button class="btn" data-step="-1">−</button>
+        <div id="raise-range" class="raise-range"></div>
+        <button class="btn" data-step="1">+</button>
+      </div>
+      <div class="presets" id="presets"></div>
+      <div class="sheet-actions">
+        <button id="raise-cancel" class="btn ghost">Cancelar</button>
+        <button id="raise-ok" class="btn primary">Subir</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="menu" class="sheet hidden">
+    <div class="sheet-card">
+      <div class="sheet-title">Opciones</div>
+      <button id="opt-show" class="btn wide"></button>
+      <button id="opt-sitout" class="btn wide"></button>
+      <button id="opt-leave" class="btn wide danger">Levantarme de la mesa</button>
+      <button id="menu-close" class="btn ghost wide">Cerrar</button>
+    </div>
+  </div>
+
+  <div id="confirm" class="sheet hidden">
+    <div class="sheet-card">
+      <div id="confirm-title" class="sheet-title"></div>
+      <div class="sheet-actions">
+        <button id="confirm-no" class="btn ghost">No</button>
+        <button id="confirm-yes" class="btn primary">Sí</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script type="module" src="/js/play.js"></script>
+</body>
+</html>
