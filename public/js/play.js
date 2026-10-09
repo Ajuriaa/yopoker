@@ -83,6 +83,10 @@ const endPeek = () => {
 hole.addEventListener('pointerdown', startPeek);
 ['pointerup', 'pointercancel', 'pointerleave'].forEach((ev) => hole.addEventListener(ev, endPeek));
 hole.addEventListener('contextmenu', (e) => e.preventDefault());
+// iPhone: evitar la lupa/zoom al mantener presionado las cartas.
+hole.addEventListener('touchstart', (e) => e.preventDefault(), { passive: false });
+hole.addEventListener('touchend', endPeek);
+hole.addEventListener('touchcancel', endPeek);
 
 // ---------- Menú ----------
 $('#menu-btn').addEventListener('click', () => {

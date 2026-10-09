@@ -54,3 +54,9 @@ body { min-height: 100dvh; background: radial-gradient(ellipse at 50% -20%, rgba
 .toast.error { background: var(--red-2); }
 .badkey { position: fixed; inset: 0; z-index: 70; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 24px; background: var(--bg); font-size: 18px; }
 .badkey div { font-size: 64px; }
+
+/* Sin zoom inesperado en cel: sin zoom por doble toque, sin lupa al mantener presionado,
+   sin scroll lateral. Los campos de texto sí se pueden seleccionar. */
+html { touch-action: manipulation; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { overflow-x: hidden; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+input, textarea { -webkit-user-select: text; user-select: text; font-size: max(16px, 1em); }
