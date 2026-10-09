@@ -50,7 +50,7 @@ const lastTag = new Map();
 function render(s) {
   state = s;
   const h = s.hand;
-  if (h && !h.ended) hideStartIfPlaying();
+  if (s.handNo > 0) hideStartIfPlaying();
 
   $('#hand-no').textContent = s.handNo ? `Mano ${s.handNo}` : 'Esperando jugadores';
   $('#blinds').textContent = `Ciegas ${fmt(s.settings.sb)}/${fmt(s.settings.bb)}`;
@@ -95,7 +95,7 @@ function renderBoard(h) {
   $('#pot').innerHTML = h.ended || !pot ? '' : `Pozo ${fmt(pot)}`;
   let msg = '';
   if (h.runout && !h.ended) msg = '🔥 ¡Todos all-in! Se reparte todo…';
-  else if (h.ended) msg = state.autoNext ? 'Siguiente mano en unos segundos…' : 'Esperando al dealer…';
+  else if (h.ended) msg = '';
   $('#center-msg').textContent = msg;
 }
 
@@ -118,7 +118,7 @@ function renderSeats(s) {
     if (hp?.folded) cls.push('folded');
     if (!hp && h) cls.push('out');
     if (p.sitOut) cls.push('out');
-    if (winners.has(i)) cls.push('winner');
+    if (winners.has(i)) cls.push('won');
 
     // Cartas: boca abajo durante la mano; boca arriba en el showdown.
     let cards = '';
@@ -147,7 +147,7 @@ function renderSeats(s) {
       <div class="plate-wrap">${tag}
       <div class="plate">
         <div class="nm">${esc(p.name)}${p.connected ? '' : '<span class="offline-dot" title="Desconectado"></span>'}</div>
-        <div class="st">${p.sitOut ? 'Fuera' : stack === 0 && !hp?.allIn ? 'Sin fichas' : fmt(stack)}</div>
+        <div class="st">${p.sitOut ? 'Fuera' : stack === 0 && (!hp || !hp.allIn || h?.ended) ? 'Sin fichas' : fmt(stack)}</div>
         <div class="timer" style="width:0"></div>
       </div></div>
     </div>`;
@@ -176,10 +176,10 @@ function renderWinner(s) {
     el.classList.add('hidden');
     return;
   }
-  const parts = h.results
-    .filter((r) => r.amount > 0)
-    .map((r) => `<b>${esc(s.seats[r.seat]?.name ?? '?')}</b> gana ${fmt(r.amount)}${r.handName ? ` con ${esc(r.handName)}` : ''}`);
-  el.innerHTML = '🏆 ' + parts.join(' · ');
+  const won = h.results.filter((r) => r.amount > 0).sort((a, b) => b.amount - a.amount);
+  const parts = won.map((r) => `<span class="w-item"><b>${esc(s.seats[r.seat]?.name ?? '?')}</b> +${fmt(r.amount)}${r.handName ? ` <small>${esc(r.handName)}</small>` : ''}</span>`);
+  el.innerHTML = `<span class="w-trophy">🏆</span>${parts.join('')}`;
+  el.classList.toggle('many', won.length > 2);
   el.classList.remove('hidden');
 }
 

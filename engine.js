@@ -22,9 +22,10 @@ export function createTable(settings = {}) {
 
 export function addPlayer(t, { id, name }, preferredSeat = null) {
   if (t.seats.some((s) => s && s.id === id)) throw new PokerError('Ese jugador ya está sentado');
+  const clean = cleanName(name);
   let seat = preferredSeat !== null && t.seats[preferredSeat] === null ? preferredSeat : t.seats.indexOf(null);
   if (seat === -1) throw new PokerError('La mesa está llena (8 jugadores)');
-  t.seats[seat] = { id, name: cleanName(name), stack: t.settings.startingStack, sitOut: false, leaving: false };
+  t.seats[seat] = { id, name: clean, stack: t.settings.startingStack, sitOut: false, leaving: false };
   return seat;
 }
 

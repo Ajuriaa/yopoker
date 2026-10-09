@@ -48,7 +48,7 @@ body { overflow: hidden; user-select: none; -webkit-user-select: none; cursor: d
   color: transparent;
   filter: drop-shadow(0 calc(0.6 * var(--u)) 0 #7a3d00);
 }
-.logo span { -webkit-text-fill-color: initial; }
+.start-emoji { font-size: calc(12 * var(--u)); line-height: 1; }
 
 /* ---------- Barra superior ---------- */
 .topbar {
@@ -176,7 +176,7 @@ body { overflow: hidden; user-select: none; -webkit-user-select: none; cursor: d
 @keyframes turnPulse { 50% { box-shadow: 0 0 0 calc(0.4 * var(--u)) var(--gold), 0 0 calc(6 * var(--u)) rgba(255, 197, 61, 0.9); } }
 .seat.folded .plate { opacity: 0.5; }
 .seat.out .plate { opacity: 0.4; filter: grayscale(1); }
-.seat.winner .plate { border-color: var(--green); box-shadow: 0 0 0 calc(0.4 * var(--u)) var(--green), 0 0 calc(5 * var(--u)) rgba(34, 211, 122, 0.7); }
+.seat.won .plate { border-color: var(--green); box-shadow: 0 0 0 calc(0.4 * var(--u)) var(--green), 0 0 calc(5 * var(--u)) rgba(34, 211, 122, 0.7); }
 .seat .offline-dot { display: inline-block; width: calc(1 * var(--u)); height: calc(1 * var(--u)); border-radius: 50%; background: var(--red); margin-left: calc(0.6 * var(--u)); vertical-align: middle; }
 .plate-wrap { position: relative; width: 100%; z-index: 2; }
 .tag {
@@ -266,19 +266,27 @@ body { overflow: hidden; user-select: none; -webkit-user-select: none; cursor: d
 .winner {
   position: absolute;
   left: 50%;
-  bottom: calc(1.8 * var(--u));
+  top: 61%;
   transform: translateX(-50%);
   z-index: 7;
-  padding: calc(1.2 * var(--u)) calc(4 * var(--u));
-  border-radius: 999px;
+  max-width: 62%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: calc(0.6 * var(--u)) calc(2.4 * var(--u));
+  padding: calc(1 * var(--u)) calc(3 * var(--u));
+  border-radius: calc(2.4 * var(--u));
   background: linear-gradient(90deg, #12a35a, #2ee68a);
   color: #032612;
   font-weight: 800;
-  font-size: calc(3 * var(--u));
-  white-space: nowrap;
+  font-size: calc(2.8 * var(--u));
   box-shadow: 0 calc(1 * var(--u)) calc(4 * var(--u)) rgba(0, 0, 0, 0.6);
   animation: tagIn 0.4s ease-out;
 }
+.winner.many { font-size: calc(2.2 * var(--u)); }
+.winner .w-item { white-space: nowrap; }
+.winner small { font-weight: 600; opacity: 0.8; font-size: 0.8em; }
 .winner b { font-family: var(--display); font-weight: 400; letter-spacing: 0.02em; }
 
 /* ---------- Efectos ---------- */
